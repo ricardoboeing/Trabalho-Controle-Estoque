@@ -31,7 +31,7 @@ import javax.swing.ImageIcon;
 import Controler.Gerenciador;
 import Controler.Produto;
 
-public class ViewInclui extends JFrame {
+public class ViewAltera extends JFrame {
 	private JTextField textNome;
 	private JTextField textPreco;
 	private JTextField textUnidade;
@@ -42,7 +42,6 @@ public class ViewInclui extends JFrame {
 	 * Launch the application.
 	 */
 	Gerenciador gerenciador = new Gerenciador();
-	private JTextField textNomeInclui;
 	private JTextField textPrecoInclui;
 	private JTextField textUnidadeInclui;
 	private JTextField textQuantidadeInclui;
@@ -51,7 +50,7 @@ public class ViewInclui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewInclui frame = new ViewInclui();
+					ViewAltera frame = new ViewAltera();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +62,7 @@ public class ViewInclui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ViewInclui() {
+	public ViewAltera() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -81,28 +80,6 @@ public class ViewInclui extends JFrame {
 		
 		JButton btnNewButton = new JButton("Inclui");
 		btnNewButton.setBounds(70, 192, 90, 25);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if((textNomeInclui.getText().trim().equals("")) 
-					|| (textPrecoInclui.getText().trim().equals("")) 
-					|| (textUnidadeInclui.getText().trim().equals(""))
-					|| (textQuantidadeInclui.getText().trim().equals(""))  
-				){
-					JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
-				}else{
-					gerenciador.cadastraProduto(textNomeInclui.getText(), 
-												Double.parseDouble(textPrecoInclui.getText()), 
-												textUnidadeInclui.getText(), 
-												Integer.parseInt(textQuantidadeInclui.getText())
-												);
-					JOptionPane.showMessageDialog(null, "Produto Cadastrado");
-					textNomeInclui.setText(null);
-					textPrecoInclui.setText(null);
-					textUnidadeInclui.setText(null);
-					textQuantidadeInclui.setText(null);
-				}
-			}
-		});
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 10));
 		btnNewButton.setPreferredSize(new Dimension(100, 25));
 		contentPane.add(btnNewButton);
@@ -111,7 +88,7 @@ public class ViewInclui extends JFrame {
 		btnVoltar.setBounds(361, 263, 77, 25);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewInclui.this.dispose();
+				ViewAltera.this.dispose();
 				ViewCadastro frame = new ViewCadastro();
 				frame.setVisible(true);
 			}
@@ -190,10 +167,6 @@ public class ViewInclui extends JFrame {
 		lblConsulta.setBounds(285, 47, 124, 15);
 		contentPane.add(lblConsulta);
 		
-		JLabel lblNomeInclui = new JLabel("Nome");
-		lblNomeInclui.setBounds(12, 82, 70, 15);
-		contentPane.add(lblNomeInclui);
-		
 		JLabel lblPrecoInclui = new JLabel("Preço");
 		lblPrecoInclui.setBounds(12, 105, 70, 15);
 		contentPane.add(lblPrecoInclui);
@@ -205,11 +178,6 @@ public class ViewInclui extends JFrame {
 		JLabel lblQuantidadeInclui = new JLabel("Quantidade");
 		lblQuantidadeInclui.setBounds(12, 159, 83, 15);
 		contentPane.add(lblQuantidadeInclui);
-		
-		textNomeInclui = new JTextField();
-		textNomeInclui.setColumns(10);
-		textNomeInclui.setBounds(100, 80, 114, 19);
-		contentPane.add(textNomeInclui);
 		
 		textPrecoInclui = new JTextField();
 		textPrecoInclui.setColumns(10);
@@ -230,7 +198,6 @@ public class ViewInclui extends JFrame {
 		lblInclui.setForeground(Color.BLUE);
 		lblInclui.setBounds(36, 47, 124, 15);
 		contentPane.add(lblInclui);
-		
 
 		
 	}
