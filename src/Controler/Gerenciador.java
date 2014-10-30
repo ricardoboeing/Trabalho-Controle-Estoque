@@ -14,13 +14,12 @@ public class Gerenciador {
 
 	}
 
-	public void alteraProduto(String nome, double preco, String unidade,
-			int quantidade) {
+	public void alteraProduto(Produto alteraProduto) {
 		for (Produto Produto : listaProduto) {
-			if (nome.equalsIgnoreCase(Produto.getNome())) {
-				Produto.setPreco(preco);
-				Produto.setUnidade(unidade);
-				Produto.setQuantidade(quantidade);
+			if (alteraProduto.getNome().equalsIgnoreCase(Produto.getNome())) {
+				Produto.setPreco(alteraProduto.getPreco());
+				Produto.setUnidade(alteraProduto.getUnidade());
+				Produto.setQuantidade(alteraProduto.getQuantidade());
 			}
 		}
 	}

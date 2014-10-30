@@ -42,9 +42,9 @@ public class ViewAltera extends JFrame {
 	 * Launch the application.
 	 */
 	Gerenciador gerenciador = new Gerenciador();
-	private JTextField textPrecoInclui;
-	private JTextField textUnidadeInclui;
-	private JTextField textQuantidadeInclui;
+	private JTextField textPrecoAltera;
+	private JTextField textUnidadeAltera;
+	private JTextField textQuantidadeAltera;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -78,11 +78,29 @@ public class ViewAltera extends JFrame {
 		lblNesistemaDeControle.setFont(new Font("Dialog", Font.BOLD, 18));
 		contentPane.add(lblNesistemaDeControle);
 		
-		JButton btnNewButton = new JButton("Inclui");
-		btnNewButton.setBounds(70, 192, 90, 25);
-		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnNewButton.setPreferredSize(new Dimension(100, 25));
-		contentPane.add(btnNewButton);
+		JButton btnAltera = new JButton("Altera");
+		btnAltera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nome = textNome.getText();
+				Produto produtoAltera = gerenciador.consultaProduto(nome);
+				if(produtoAltera == null){
+					JOptionPane.showMessageDialog(null, "Primeiro encontre o produto a ser alterado.");
+				}else{
+					if((textPrecoAltera.getText().trim().equals("")) 
+						|| (textUnidadeAltera.getText().trim().equals(""))
+						|| (textQuantidadeAltera.getText().trim().equals(""))
+					){  
+						JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+					}else{
+						gerenciador.alteraProduto(produtoAltera);
+					}
+				}
+			}
+		});
+		btnAltera.setBounds(70, 192, 90, 25);
+		btnAltera.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnAltera.setPreferredSize(new Dimension(100, 25));
+		contentPane.add(btnAltera);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(361, 263, 77, 25);
@@ -179,25 +197,25 @@ public class ViewAltera extends JFrame {
 		lblQuantidadeInclui.setBounds(12, 159, 83, 15);
 		contentPane.add(lblQuantidadeInclui);
 		
-		textPrecoInclui = new JTextField();
-		textPrecoInclui.setColumns(10);
-		textPrecoInclui.setBounds(100, 105, 114, 19);
-		contentPane.add(textPrecoInclui);
+		textPrecoAltera = new JTextField();
+		textPrecoAltera.setColumns(10);
+		textPrecoAltera.setBounds(100, 105, 114, 19);
+		contentPane.add(textPrecoAltera);
 		
-		textUnidadeInclui = new JTextField();
-		textUnidadeInclui.setColumns(10);
-		textUnidadeInclui.setBounds(100, 130, 114, 19);
-		contentPane.add(textUnidadeInclui);
+		textUnidadeAltera = new JTextField();
+		textUnidadeAltera.setColumns(10);
+		textUnidadeAltera.setBounds(100, 130, 114, 19);
+		contentPane.add(textUnidadeAltera);
 		
-		textQuantidadeInclui = new JTextField();
-		textQuantidadeInclui.setColumns(10);
-		textQuantidadeInclui.setBounds(100, 157, 114, 19);
-		contentPane.add(textQuantidadeInclui);
+		textQuantidadeAltera = new JTextField();
+		textQuantidadeAltera.setColumns(10);
+		textQuantidadeAltera.setBounds(100, 157, 114, 19);
+		contentPane.add(textQuantidadeAltera);
 		
-		JLabel lblInclui = new JLabel("Inclui Produto");
-		lblInclui.setForeground(Color.BLUE);
-		lblInclui.setBounds(36, 47, 124, 15);
-		contentPane.add(lblInclui);
+		JLabel lblAltera = new JLabel("Altera Produto");
+		lblAltera.setForeground(Color.BLUE);
+		lblAltera.setBounds(36, 47, 124, 15);
+		contentPane.add(lblAltera);
 
 		
 	}

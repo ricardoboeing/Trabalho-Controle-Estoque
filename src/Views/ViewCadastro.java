@@ -81,6 +81,13 @@ public class ViewCadastro extends JFrame {
 		contentPane.add(btnInclui);
 		
 		JButton btnAltera = new JButton("Alteração");
+		btnAltera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewAltera frame = new ViewAltera();
+				ViewCadastro.this.dispose();
+				frame.setVisible(true);
+			}
+		});
 		btnAltera.setFont(new Font("Dialog", Font.BOLD, 10));
 		btnAltera.setBounds(114, 47, 90, 25);
 		contentPane.add(btnAltera);
