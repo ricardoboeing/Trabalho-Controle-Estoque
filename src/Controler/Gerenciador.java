@@ -1,4 +1,6 @@
 package Controler;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -6,6 +8,58 @@ import javax.swing.JOptionPane;
 public class Gerenciador {
 
 	ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+	
+	public void alteraProdutoo(Produto produto){
+		Connection conn = null;
+		Statement st = null;
+		
+		try {
+			conn = ConectaBanco.getConn();
+			st = conn.createStatement();
+			st.execute("UPDATE produto SET preco_produto="+produto.getPreco()+
+									    ", unidade_produto="+produto.getUnidade()+
+									    ", quantidade_produto="+produto.getQuantidade()
+					  );
+					
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			try {
+				if(st != null){
+					st.close();
+				}
+				if(conn != null){
+					conn.close();
+				}
+			} catch(Exception e){}
+				
+		}
+	}
+	
+	public Produto consultaProdutoo(String nome){
+		Connection conn = null;
+		Statement st = null;
+		
+		try {
+			conn = ConectaBanco.getConn();
+			st = conn.createStatement();
+			st.execute("select * from produto WHERE(nome_produto="+nome);
+					
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			try {
+				if(st != null){
+					st.close();
+				}
+				if(conn != null){
+					conn.close();
+				}
+			} catch(Exception e){}
+				
+		}
+	}
+	
 
 	public void cadastraProduto(String nome, double preco, String unidade,
 			int quantidade) {
